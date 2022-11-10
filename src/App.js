@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router,  Route, Link} from 'react-router-dom'
-import Home from './components/Home';
 
 import './App.css';
+import Home from './components/Home';
+import Catalog from './components/Catalog';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       users: [
-        { name: "Arthur", budget: 100, img: ""},
-        { name: "Thomas", budget: 1000, img: ""},
-        { name: "Jhon", budget: 1, img: ""},
-        { name: "Ada", budget: 10, img: ""}
+        { name: "Arthur", budget: 100, img: "https://ichef.bbci.co.uk/images/ic/480xn/p07l6f7g.jpg"},
+        { name: "Thomas", budget: 1000, img: "https://pbs.twimg.com/profile_images/736429036268838917/Zu6VDBMI_400x400.jpg"},
+        { name: "Jhon", budget: 1, img: "https://i.pinimg.com/originals/32/98/0a/32980a359f7b73bbf510ee48bc317660.jpg"},
+        { name: "Ada", budget: 10, img: "https://cdn.shopify.com/s/files/1/1759/0923/articles/the-attire-of-ada-shelby-974539_grande.jpg?v=1663899768"}
       ],
       movies: [
         { id: 0, isRented: false, title: "Tarzan", year: 1999, img: "https://vignette.wikia.nocookie.net/disney-fan-fiction/images/4/42/Tarzan_2004_cover.jpg/revision/latest?cb=20140331030811", descrShort: "Tarzan was born into wealth but raised into incredible misfortune. Shiprweck, parents mauled by a jaguar. Luckily, a troop of gorillas took him in, but the Big Daddy gorilla never took a liking to him. That is, until the end when it's too late. Why is it too late? Watch and find out." },
@@ -28,14 +29,21 @@ class App extends Component {
 
   render() {
     const state = this.state
+
     return (
       <Router> 
         <div className="App">
           <div id="home-background"></div>
           <div id="main-links">
             <Link to="/">Home</Link>
+            <Link to="/catalog">Catalog</Link>
+            {/*   CATALOG OPTIONS - default user / last user logged (error when don't have one/default) / ... */}
+
           </div>
-          <Route path="/" exact component={Home}/>
+          <div id='logo'>REFLIX</div>
+          <Route path="/" exact render={() => <Home users={state.users} />} />
+          <Route path="/catalog" exact render={({ match, location }) => <Catalog match={match} location={location} state={state}/>}/>
+
         </div>
       </Router>
     );
