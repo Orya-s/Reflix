@@ -1,0 +1,25 @@
+h1 {
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 3.5em;
+}
+
+#users-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.users {
+    color: whitesmoke;
+    text-align: center;
+    display: inline-block;
+}
+
+img {
+    height: 150px;
+    width: 200px;
+    border: solid white 2px;
+    border-radius: 5px;
+    margin: 10px;
+}
