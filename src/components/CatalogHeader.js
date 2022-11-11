@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class CatalogHeader extends Component {
 
@@ -12,15 +11,16 @@ class CatalogHeader extends Component {
 
     updateSearch = e => {
         this.setState({search: e.target.value})
-        this.props.updateSearch(this.state.search)
+        this.props.updateSearch(e.target.value)
     } 
 
     render() {
         return (
-            <div className='header'>
-                <input className='header' id="search" placeholder='Search' value={this.state.search} onChange={this.updateSearch}/>
-
-
+            <div >
+                <div className='search-bar'>
+                    <input className='header' id="search" placeholder='Search' value={this.state.search} onChange={this.updateSearch}/>
+                    <div className='budget'>Budget:   {this.props.budget}</div>
+                </div>
             </div>
         );
     }
