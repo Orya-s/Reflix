@@ -3,5 +3,31 @@ h2 {
 }
 
 .header {
+    /* color: whitesmoke; */
+    background-color: whitesmoke;
+    margin-top: 2em;
+    padding: 0.4em;
+    border-radius: 4px; 
+}
+
+.budget {
     color: whitesmoke;
+    position: absolute;
+    right: 10px;
+    display: inline-block;
+    margin-top: 1.5em;
+}
+
+.card-container {
+    display: inline-block;
+    position: relative;
+}
+
+.rent-movie {
+    position:absolute;
+    top: 0;
+    right: 0;
+    opacity: 85%;
+
+    /* margin-top: 10; */
 }
