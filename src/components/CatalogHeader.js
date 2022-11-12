@@ -17,8 +17,8 @@ class CatalogHeader extends Component {
     render() {
         return (
             <div >
-                <div className='search-bar'>
-                    <input className='header' id="search" placeholder='Search' value={this.state.search} onChange={this.updateSearch}/>
+                <div className='header'>
+                    <input className='search-bar' id="search" placeholder='Search' value={this.state.search} onChange={this.updateSearch}/>
                     <div className='budget'>Budget:   {this.props.budget}</div>
                 </div>
             </div>
