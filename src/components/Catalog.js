@@ -15,8 +15,7 @@ class Catalog extends Component {
         this.state = {
             budget: 0,
             searchInput: "",
-            rented: 0,
-            columnsPerRow: 5
+            columnsPerRow: 6
         }
     }
 
@@ -37,16 +36,47 @@ class Catalog extends Component {
     }
 
     getRented = () => {
-        if(this.state.rented > 0) {
+        if(this.props.state.rented > 0) {
             const movies = this.props.state.movies
             const rented = movies.filter(m => m.isRented)
-            return <Rented movies={rented}/>
+            return <Rented movies={rented} rent={this.updateRent}/>
         }
     }
 
     getColumnsForRow = () => {
         const movies = this.props.state.movies
-        return movies.map(m => <Movie movie={m} key={m.title + m.year}/>)
+        return movies.map(m => <Movie movie={m} key={m.title + m.year} rent={this.updateRent}/>)
+    }
+
+    updateRent = movie => {
+        if(movie.isRented) {
+            this.returnMovie(movie)
+        }
+        else {
+            this.rentMovie(movie)
+        }
+    }
+
+    returnMovie = movie => {
+        let user = this.getUser()
+        this.props.updateRent(movie, false)
+        this.props.updateBudget(user, false)
+    }
+
+    rentMovie = movie => {
+        if (this.canRent(this.getUser())) {
+            let user = this.getUser()
+            this.props.updateRent(movie, true)
+            this.props.updateBudget(user, true)
+        }
+    }
+
+    canRent = user => {
+        if(user.budget - 3 < 0) {
+            alert("Your budget is not enough to rent a movie, sorry!")
+            return false
+        }
+        return true
     }
 
 
@@ -60,11 +90,9 @@ class Catalog extends Component {
                <CatalogHeader user={user} updateSearch={this.updateSearch} budget={budget}/>
                <div>{this.getRented()}</div>
                 
-
-               <h2>Catalog</h2>
-
+               <h4>Catalog</h4>
                <Container>
-                    <Row xs={1} md={this.state.columnsPerRow}>
+                    <Row xs={3} md={this.state.columnsPerRow}>
                         {this.getColumnsForRow()}
                     </Row>
                 </Container>  
