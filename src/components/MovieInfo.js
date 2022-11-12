@@ -13,7 +13,6 @@ class MovieInfo extends Component {
         return ( 
             <div className='movie-info'> 
                 <h3 className='movie-title'>{movie.title} ({movie.year})</h3>
-                {/* <Card.Img src={movie.img} className='img'></Card.Img> */}
                 <img src={movie.img} className='img'></img>
                 <div className='movie-description'>{movie.descrShort}</div>
             </div>
