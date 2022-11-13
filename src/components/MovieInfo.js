@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Card from 'react-bootstrap/Card';
 import '../styles/movieInfo.css'
 
 
@@ -13,7 +12,7 @@ class MovieInfo extends Component {
         return ( 
             <div className='movie-info'> 
                 <h3 className='movie-title'>{movie.title} ({movie.year})</h3>
-                <img src={movie.img} className='img'></img>
+                <img src={movie.img} className='img' alt={movie.title}></img>
                 <div className='movie-description'>{movie.descrShort}</div>
             </div>
         );
