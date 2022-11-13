@@ -19,7 +19,7 @@ class CatalogHeader extends Component {
             <div >
                 <div className='header'>
                     <input className='search-bar' id="search" placeholder='Search' value={this.state.search} onChange={this.updateSearch}/>
-                    <div className='budget'>Budget:   {this.props.budget}</div>
+                    <div className='budget'>Budget:   ${this.props.budget}.00</div>
                 </div>
             </div>
         );
