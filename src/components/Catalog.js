@@ -28,7 +28,6 @@ class Catalog extends Component {
 
     updateSearch = input => {
         this.setState({searchInput: input})
-        console.log(input);     ///////////
     }
 
     updateBudget = budget => {
@@ -44,7 +43,12 @@ class Catalog extends Component {
     }
 
     getColumnsForRow = () => {
-        const movies = this.props.state.movies
+        let movies = this.props.state.movies
+
+        let searchInput = this.state.searchInput.toLowerCase()
+        if(searchInput !== "") {
+            movies = movies.filter(m => m.title.toLowerCase().includes(searchInput))
+        }
         return movies.map(m => <Movie movie={m} key={m.title + m.year} rent={this.updateRent}/>)
     }
 
