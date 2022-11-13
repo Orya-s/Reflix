@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-// import { IconButton } from '@mui/material';
-// import Icon from '@mui/material/Icon';
 import '../styles/catalog.css'
-
 
 
 class Movie extends Component {
@@ -29,7 +26,6 @@ class Movie extends Component {
                                 this.updateRent()
                                 e.preventDefault();
                             }}>{movie.isRented ? "-" : "+"}</button>
-                        {/* <Icon>add_circle</Icon> */}
                     </div>
                 </Link>
             </Col>
