@@ -1,15 +1,15 @@
 h4 {
     color: white;
+    margin-left: 0.5em;
 }
 
 .search-bar {
-    /* color: whitesmoke; */
     background-color: whitesmoke;
     margin-top: 1.5em;
     margin-bottom: 2em;
     padding: 0.4em;
     border-radius: 4px; 
-
+    margin-left: 0.5em;
 }
 
 .budget {
@@ -29,9 +29,6 @@ h4 {
     position:absolute;
     top: 0;
     right: 0;
-    /* opacity: 85%; */
-
-    /* margin-top: 10; */
 }
 
 .movie-img {
