@@ -15,7 +15,8 @@ class Catalog extends Component {
         this.state = {
             budget: 0,
             searchInput: "",
-            columnsPerRow: 6
+            columnsPerRow: 6,
+            moviePrice: 3
         }
     }
 
@@ -76,13 +77,12 @@ class Catalog extends Component {
     }
 
     canRent = user => {
-        if(user.budget - 3 < 0) {
+        if(user.budget - this.state.moviePrice < 0) {
             alert("Your budget is not enough to rent a movie, sorry!")
             return false
         }
         return true
     }
-
 
 
     render() {
