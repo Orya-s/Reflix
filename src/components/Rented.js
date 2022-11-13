@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Movie from './Movie';
 // import '../styles/rented.css'
 
 class Rented extends Component {
-    constructor() {
-        super();
-    }
 
     getRented = () => {
         const movies = this.props.movies

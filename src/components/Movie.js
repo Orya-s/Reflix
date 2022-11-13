@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 // import { IconButton } from '@mui/material';
 // import Icon from '@mui/material/Icon';
 import '../styles/catalog.css'
@@ -11,9 +10,6 @@ import '../styles/catalog.css'
 
 
 class Movie extends Component {
-    constructor() {
-        super();
-    }
 
     updateRent = () => {
         this.props.rent(this.props.movie)
