@@ -23,7 +23,8 @@ class App extends Component {
         { id: 3, isRented: false, title: "The Sword in the Stone", year: 1963, img: "https://www.disneyinfo.nl/images/laserdiscs/229-1-AS-front.jpg", descrShort: "Arthur is a young boy who just wants to be a knight's squire. Alas, he is dubbed 'Wart' early on, and it was all downhill from there for a while. On a hunting trip he falls in on Merlin, literally. Merlin is a possibly-mentally-unstable-and-ethically-dubious Wizard that turns Arthur into a literate, at-one-point harassed squirrel. Watch to find out what the heck that means." },
         { id: 4, isRented: false, title: "Beauty and the Beast", year: 2016, img: "https://images-na.ssl-images-amazon.com/images/I/51ArFYSFGJL.jpg", descrShort: "Basically the same as the original, except now Hermi-- Emma Wattson plays Belle, fittingly so some would say, given how actively progressive she is regarding women's rights. Rumor has it that in the bonus scenes she whips out a wand and turns Gaston into a toad, but in order to watch those scenes you need to recite a certain incantation." }
       ],
-      rented: 0
+      rented: 0,
+      currentUser: null
     }
   }
 
@@ -46,6 +47,14 @@ class App extends Component {
     this.setState({movies: updatedMovies})
   }
 
+  updateLastUser = user => {
+    this.setState({lastUser: user.name})
+  }
+
+  updateCurrentUser = user => {
+    this.setState({currentUser: user})
+  }
+
 
   render() {
     const state = this.state
@@ -56,13 +65,12 @@ class App extends Component {
           <div id="home-background"></div>
           <div id="main-links">
             <Link to="/">Home</Link>
-            <Link to="/catalog">Catalog</Link>
-            {/*   CATALOG OPTIONS - default user / last user logged (error when don't have one/default) / ... */}
+            {this.state.currentUser != null ?  <Link to={"/catalog?user=" + this.state.currentUser.name}>Catalog</Link> : ""}
 
           </div>
           <div id='logo'>REFLIX</div>
-          <Route path="/" exact render={() => <Home users={state.users} />} />
-          <Route path="/catalog" exact render={({ match, location }) => <Catalog match={match} location={location} state={state} updateRent={this.updateRent} updateBudget={this.updateBudget}/>}/>
+          <Route path="/" exact render={() => <Home users={state.users} updateCurrentUser={this.updateCurrentUser}/>} />
+          <Route path="/catalog" exact render={({ match, location }) => <Catalog match={match} location={location} state={state} updateRent={this.updateRent} updateBudget={this.updateBudget} updateLastUser={this.updateLastUser}/>}/>
           <Route path="/movie/:id" exact render={({ match }) => <MovieInfo match={match} movies={state.movies}/>}/>
 
         </div>

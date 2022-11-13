@@ -10,7 +10,7 @@ class Home extends Component {
             <div>
                <h1>WHO'S WATCHING?</h1>
                 <div id='users-container'>
-                    {users.map(u => <User user={u}  key={u.name}/>)}
+                    {users.map(u => <User user={u} key={u.name} updateCurrentUser={this.props.updateCurrentUser}/>)}
                 </div>
             </div>
         );
