@@ -3,6 +3,7 @@ import { BrowserRouter as Router,  Route, Link} from 'react-router-dom'
 
 import './App.css';
 import Home from './components/Home';
+import NavigationBar from './components/NavigationBar';
 import Catalog from './components/Catalog';
 import MovieInfo from './components/MovieInfo';
 
@@ -33,6 +34,9 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    // data.getData()   // remove hard coded
+  }
 
   updateBudget = (user, didRent) => {
     let updatedUsers = [...this.state.users]
@@ -57,10 +61,6 @@ class App extends Component {
     this.setState({rented: didRent ? this.state.rented +1 : this.state.rented -1 })
   } 
 
-  updateLastUser = user => {
-    this.setState({lastUser: user.name})
-  }
-
   updateCurrentUser = user => {
     this.setState({currentUser: user})
   }
@@ -73,16 +73,11 @@ class App extends Component {
       <Router> 
         <div className="App">
           <div id="home-background"></div>
-          <div id="main-links">
-            <Link to="/">Home</Link>
-            {this.state.currentUser ? <Link to={"/catalog?user=" + this.state.currentUser.name}>Catalog</Link> : ""}
-
-          </div>
-          <div id='logo'>REFLIX</div>
+          <NavigationBar currentUser={this.state.currentUser}/>
+          
           <Route path="/" exact render={() => <Home users={state.users} updateCurrentUser={this.updateCurrentUser}/>} />
-          <Route path="/catalog" exact render={({ match, location }) => <Catalog match={match} location={location} state={state} updateRent={this.updateRent} updateBudget={this.updateBudget} updateLastUser={this.updateLastUser}/>}/>
+          <Route path="/catalog" exact render={({ match, location }) => <Catalog match={match} location={location} state={state} updateRent={this.updateRent} updateBudget={this.updateBudget}/>}/>
           <Route path="/movie/:id" exact render={({ match }) => <MovieInfo match={match} movies={state.movies}/>}/>
-
         </div>
       </Router>
     );
